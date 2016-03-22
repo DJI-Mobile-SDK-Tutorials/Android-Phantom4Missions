@@ -1,0 +1,161 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/main_title_rl"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@android:color/black" >
+
+        <ImageButton
+            android:id="@+id/ReturnBtnMain"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:adjustViewBounds="true"
+            android:background="@android:color/transparent"
+            android:onClick="onReturn"
+            android:scaleType="centerInside" />
+        selector_button
+        <TextView
+            android:id="@+id/ConnectStatusTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/title_activity_tracking_test"
+            android:textColor="@android:color/white"
+            android:textSize="21sp" />
+
+        <ImageButton
+            android:id="@+id/tracking_drawer_control_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/mission_other_icon"
+            android:background="#ff000000"
+            />
+    </RelativeLayout>
+
+    <TextureView
+        android:id="@+id/tracking_video_previewer_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_title_rl"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center" />
+
+    <SlidingDrawer
+        android:id="@+id/tracking_drawer_sd"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_title_rl"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:content="@+id/tracking_drawer_content_rl"
+        android:handle="@+id/tracking_handle"
+        >
+
+        <ImageView
+            android:id="@id/tracking_handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:id="@id/tracking_drawer_content_rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/main_title_rl"
+            android:layout_centerInParent="true"  >
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                android:scrollbars="vertical" >
+
+                <TextView
+                    android:id="@+id/tracking_push_tv"
+                    style="@style/test_text"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="vertical"
+                    android:text="@string/push_info"/>
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </SlidingDrawer>
+
+
+    <RelativeLayout
+        android:id="@+id/tracking_bg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/main_title_rl"
+        android:layout_centerInParent="true"  >
+
+        <ImageView
+            android:id="@+id/tracking_send_rect_iv"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/visual_track_target_bg"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/tracking_rst_rect_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/visual_track_weak"
+            android:visibility="invisible" />
+
+        <ImageButton
+            android:id="@+id/tracking_stop_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:background="#ff000000"
+            android:visibility="invisible"
+            android:src="@drawable/mission_stop" />
+
+        <Button
+            android:id="@+id/tracking_confirm_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#5500ff00"
+            android:visibility="invisible"
+            android:text="OK"/>
+
+        <TextView
+            android:id="@+id/tracking_backward_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="Enable backward flying" />
+
+        <Switch
+            android:id="@+id/tracking_pull_back_sw"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tracking_backward_tv"
+            android:layout_below="@id/tracking_backward_tv"
+            android:checked="true"
+            android:text="" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
