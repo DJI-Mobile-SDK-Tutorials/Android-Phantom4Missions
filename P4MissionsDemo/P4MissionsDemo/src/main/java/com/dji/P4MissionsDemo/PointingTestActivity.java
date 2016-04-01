@@ -1,7 +1,6 @@
 package com.dji.P4MissionsDemo;
 
 import dji.midware.media.DJIVideoDataRecver;
-import dji.sdk.Camera.DJICamera.CameraReceivedVideoDataCallback;
 import dji.sdk.MissionManager.DJIMission.DJIMissionProgressStatus;
 import dji.sdk.MissionManager.DJIMissionManager;
 import dji.sdk.MissionManager.DJIMissionManager.MissionProgressStatusCallback;
@@ -48,16 +47,54 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
     private Switch mAssisSw;
     private TextView mSpeedTv;
     private SeekBar mSpeedSb;
-    
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        setContentView(R.layout.activity_pointing_test);
+        super.onCreate(savedInstanceState);
+        initUI();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initMissionManager();
+    }
+
+    @Override
+    protected void onDestroy() {
+        try {
+            DJIVideoDataRecver.getInstance().setVideoDataListener(false, null);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(mCodecManager != null){
+            mCodecManager.destroyCodec();
+        }
+
+        super.onDestroy();
+    }
+
+    /**
+     * @Description : RETURN BTN RESPONSE FUNCTION
+     */
+    public void onReturn(View view){
+        Log.d(TAG, "onReturn");
+        this.finish();
+    }
+
     private void setResultToToast(final String string) {
         PointingTestActivity.this.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 Toast.makeText(PointingTestActivity.this, string, Toast.LENGTH_SHORT).show();
-            } 
-        }); 
+            }
+        });
     }
-   
+
     private void setResultToText(final String string) {
         if (mPushTv == null) {
             setResultToToast("Push info tv has not be init...");
@@ -66,8 +103,8 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
             @Override
             public void run() {
                 mPushTv.setText(string);
-            } 
-        }); 
+            }
+        });
     }
 
     private void setVisible(final View v, final boolean visible) {
@@ -79,7 +116,7 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
             }
         });
     }
-    
+
     private void initUI() {
         mPushDrawerIb = (ImageButton)findViewById(R.id.pointing_drawer_control_ib);
         mPushDrawerSd = (SlidingDrawer)findViewById(R.id.pointing_drawer_sd);
@@ -135,7 +172,41 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
         }
         mTapFlyMission = new DJITapFlyMission();
     }
-    
+
+    /**
+     * @Description : MissionExecutionFinishedCallback Method
+     */
+    @Override
+    public void onResult(DJIError error) {
+        setResultToText("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
+        setResultToToast("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
+        setVisible(mRstPointIv, false);
+        setVisible(mStopBtn, false);
+        setVisible(mAssisTv, true);
+        setVisible(mAssisSw, true);
+    }
+
+    /**
+     * @Description MissionProgressStatusCallback Method
+     */
+    @Override
+    public void missionProgressStatus(DJIMissionProgressStatus progressStatus) {
+        if (progressStatus instanceof DJITapFlyMissionProgressStatus) {
+            DJITapFlyMissionProgressStatus pointingStatus = (DJITapFlyMissionProgressStatus)progressStatus;
+            StringBuffer sb = new StringBuffer();
+            Tools.addLineToSB(sb, "Flight state", pointingStatus.getExecutionState().name());
+            Tools.addLineToSB(sb, "pointing direction X", pointingStatus.getDirection().x);
+            Tools.addLineToSB(sb, "pointing direction Y", pointingStatus.getDirection().y);
+            Tools.addLineToSB(sb, "pointing direction Z", pointingStatus.getDirection().z);
+            Tools.addLineToSB(sb, "point x", pointingStatus.getImageLocation().x);
+            Tools.addLineToSB(sb, "point y", pointingStatus.getImageLocation().y);
+            Tools.addLineToSB(sb, "Bypass state", pointingStatus.getBypassDirection().name());
+            Tools.addLineToSB(sb, "Error", pointingStatus.getError());
+            setResultToText(sb.toString());
+            showPointByTapFlyPoint(pointingStatus.getImageLocation(), mRstPointIv);
+        }
+    }
+
     private PointF getTapFlyPoint(View iv) {
         if (iv == null) return null;
         View parent = (View)iv.getParent();
@@ -169,59 +240,6 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
     private float getSpeed() {
         if (mSpeedSb == null) return Float.NaN;
         return mSpeedSb.getProgress() + 1;
-    }
-    
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pointing_test);
-        
-        mVideoSurface = (TextureView)findViewById(R.id.pointing_video_previewer_surface);
-        mVideoSurface.setSurfaceTextureListener(this);
-        
-        mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
-
-        mReceivedVideoDataCallBack = new CameraReceivedVideoDataCallback() {
-
-            @Override
-            public void onResult(byte[] videoBuffer, int size) {
-                if(mCodecManager != null){
-                    mCodecManager.sendDataToDecoder(videoBuffer, size);
-                } 
-            }
-        }; 
-        
-        initUI();
-    }
-    
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initMissionManager();
-    } 
-    
-    @Override
-    protected void onDestroy() {
-        try {
-            DJIVideoDataRecver.getInstance().setVideoDataListener(false, null);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        if(mCodecManager != null){
-            mCodecManager.destroyCodec();
-        }
-        
-        super.onDestroy();
-    }
-    
-    /** 
-     * @Description : RETURN BTN RESPONSE FUNCTION
-     */
-    public void onReturn(View view){
-        Log.d(TAG, "onReturn");
-        this.finish();
     }
 
     @Override
@@ -312,34 +330,6 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
             setResultToToast("Mission manager is null");
             return;
         }
-    }  
-  
-    @Override
-    public void onResult(DJIError error) {
-        setResultToText("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
-        setResultToToast("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
-        setVisible(mRstPointIv, false);
-        setVisible(mStopBtn, false);
-        setVisible(mAssisTv, true);
-        setVisible(mAssisSw, true);
     }
- 
-    @Override
-    public void missionProgressStatus(DJIMissionProgressStatus progressStatus) {
-        if (progressStatus instanceof DJITapFlyMissionProgressStatus) {
-            DJITapFlyMissionProgressStatus pointingStatus = (DJITapFlyMissionProgressStatus)progressStatus;
-            StringBuffer sb = new StringBuffer();
-            Tools.addLineToSB(sb, "Flight state", pointingStatus.getExecutionState().name());
-            Tools.addLineToSB(sb, "pointing direction X", pointingStatus.getDirection().x);
-            Tools.addLineToSB(sb, "pointing direction Y", pointingStatus.getDirection().y);
-            Tools.addLineToSB(sb, "pointing direction Z", pointingStatus.getDirection().z);
-            Tools.addLineToSB(sb, "point x", pointingStatus.getImageLocation().x);
-            Tools.addLineToSB(sb, "point y", pointingStatus.getImageLocation().y);
-            Tools.addLineToSB(sb, "Bypass state", pointingStatus.getBypassDirection().name());
-            Tools.addLineToSB(sb, "Error", pointingStatus.getError());
-            setResultToText(sb.toString());
-            showPointByTapFlyPoint(pointingStatus.getImageLocation(), mRstPointIv);
-        }
-    } 
 
 }

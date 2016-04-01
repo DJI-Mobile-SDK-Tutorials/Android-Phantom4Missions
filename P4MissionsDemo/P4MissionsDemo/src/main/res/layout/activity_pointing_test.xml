@@ -43,7 +43,7 @@
     </RelativeLayout>
 
     <TextureView
-        android:id="@+id/pointing_video_previewer_surface"
+        android:id="@+id/video_previewer_surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/main_title_rl"
@@ -125,7 +125,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
-            android:background="#ff000000"
+            android:background="#00000000"
             android:visibility="invisible"
             android:src="@drawable/mission_stop" />
 
@@ -135,7 +135,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="Collision sensing" />
+            android:text="Horizontal Obstacle Avoidance Enabled"
+            android:layout_toStartOf="@+id/textView" />
 
         <Switch
             android:id="@+id/pointing_assistant_sw"
@@ -162,7 +163,8 @@
             android:layout_alignParentBottom="true"
             android:textSize="24sp"
             android:layout_toLeftOf="@id/pointing_speed_sb"
-            android:text="Speed"/>
+            android:text="Speed"
+            android:id="@+id/textView" />
 
         <TextView
             style="@style/test_text"

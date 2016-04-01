@@ -19,7 +19,7 @@ public class DJIDemoApplication extends Application{
 
     private static final String TAG = DJIDemoApplication.class.getName();
     
-    public static final String FLAG_CONNECTION_CHANGE = "com_example_dji_sdkdemo3_connection_change";
+    public static final String FLAG_CONNECTION_CHANGE = "dji_sdk_connection_change";
     
     private static DJIBaseProduct mProduct;
     

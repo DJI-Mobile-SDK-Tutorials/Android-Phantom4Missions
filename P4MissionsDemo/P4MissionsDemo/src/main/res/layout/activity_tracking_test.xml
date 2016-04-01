@@ -43,7 +43,7 @@
     </RelativeLayout>
 
     <TextureView
-        android:id="@+id/tracking_video_previewer_surface"
+        android:id="@+id/video_previewer_surface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/main_title_rl"
@@ -127,7 +127,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
-            android:background="#ff000000"
+            android:background="#00000000"
             android:visibility="invisible"
             android:src="@drawable/mission_stop" />
 
@@ -145,7 +145,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="Enable backward flying" />
+            android:text="RetreatEnabled" />
 
         <Switch
             android:id="@+id/tracking_pull_back_sw"

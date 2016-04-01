@@ -16,7 +16,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import dji.midware.media.DJIVideoDataRecver;
-import dji.sdk.AirLink.DJILBAirLink.DJIOnReceivedVideoCallback;
 import dji.sdk.Camera.DJICamera;
 import dji.sdk.Camera.DJICamera.CameraReceivedVideoDataCallback;
 import dji.sdk.Codec.DJICodecManager;
@@ -25,7 +24,7 @@ import dji.sdk.base.DJIBaseProduct;
 import dji.sdk.base.DJIBaseProduct.Model;
 
 public class DemoBaseActivity extends FragmentActivity implements SurfaceTextureListener {
-	
+
     private DJIBaseProduct mProduct;
     private DJICamera mCamera;
     
@@ -36,7 +35,6 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
     
     protected TextureView mVideoSurface = null;
     protected CameraReceivedVideoDataCallback mReceivedVideoDataCallBack = null;
-    protected DJIOnReceivedVideoCallback mOnReceivedVideoCallback = null;
     protected DJICodecManager mCodecManager = null;
     
     @Override
@@ -45,40 +43,28 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
          
         IntentFilter filter = new IntentFilter();  
         filter.addAction(DJIDemoApplication.FLAG_CONNECTION_CHANGE);
-        registerReceiver(mReceiver, filter);  
+        registerReceiver(mReceiver, filter);
+
+        mVideoSurface = (TextureView) findViewById(R.id.video_previewer_surface);
         
         if (null != mVideoSurface) {
             mVideoSurface.setSurfaceTextureListener(this);
             
             mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
-            
-            if (!DJIDemoApplication.getProductInstance().getModel().equals(Model.UnknownAircraft)) {
-	            mReceivedVideoDataCallBack = new CameraReceivedVideoDataCallback() {
-	
-	                @Override
-	                public void onResult(byte[] videoBuffer, int size) {
-	                    if(mCodecManager != null){
-	                        mCodecManager.sendDataToDecoder(videoBuffer, size);
-	                    } 
-	                }
-	            };  
-            } else {
-            	mOnReceivedVideoCallback = new DJIOnReceivedVideoCallback() {
-					
-					@Override
-					public void onResult(byte[] videoBuffer, int size) {
-						if(mCodecManager != null){
-	                        mCodecManager.sendDataToDecoder(videoBuffer, size);
-	                    } 
-					}
-				};
-            }
+
+            mReceivedVideoDataCallBack = new CameraReceivedVideoDataCallback() {
+
+                @Override
+                public void onResult(byte[] videoBuffer, int size) {
+                    if(mCodecManager != null){
+                        mCodecManager.sendDataToDecoder(videoBuffer, size);
+                    }
+                }
+            };
         }
         initPreviewer();
     }
-    
 
-    
     protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
         @Override
@@ -162,12 +148,6 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
 	            if (mCamera != null){
 	            	mCamera.setDJICameraReceivedVideoDataCallback(mReceivedVideoDataCallBack);
 	            }
-        	} else {
-        		if (null != mProduct.getAirLink()) {
-        			if (null != mProduct.getAirLink().getLBAirLink()) {
-        				mProduct.getAirLink().getLBAirLink().setDJIOnReceivedVideoCallback(mOnReceivedVideoCallback);
-        			}
-        		}
         	}
         }
     }

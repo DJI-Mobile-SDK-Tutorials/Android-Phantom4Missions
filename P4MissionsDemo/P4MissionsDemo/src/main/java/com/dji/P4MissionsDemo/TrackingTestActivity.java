@@ -48,6 +48,41 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
     // flags
     private boolean isDrawingRect = false;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        setContentView(R.layout.activity_tracking_test);
+        super.onCreate(savedInstanceState);
+        initUI();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initMissionManager();
+    }
+
+    @Override
+    protected void onDestroy() {
+        try {
+            DJIVideoDataRecver.getInstance().setVideoDataListener(false, null);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(mCodecManager != null){
+            mCodecManager.destroyCodec();
+        }
+
+        super.onDestroy();
+    }
+
+    public void onReturn(View view){
+        this.finish();
+    }
+
     private void setResultToToast(final String string) {
         TrackingTestActivity.this.runOnUiThread(new Runnable() {
             @Override
@@ -68,7 +103,6 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
             }
         });
     }
-
 
     private void initUI() {
         mPushDrawerIb = (ImageButton)findViewById(R.id.tracking_drawer_control_ib);
@@ -101,6 +135,47 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
         }
     }
 
+    /**
+     * @Description : MissionExecutionFinishedCallback Method
+     */
+    @Override
+    public void onResult(DJIError error) {
+        setResultToText("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
+        setResultToToast("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
+        TrackingTestActivity.this.runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+                mConfirmBtn.setVisibility(View.INVISIBLE);
+                mStopBtn.setVisibility(View.INVISIBLE);
+                mStopBtn.setClickable(false);
+                mPushBackTv.setVisibility(View.VISIBLE);
+                mPushBackSw.setVisibility(View.VISIBLE);
+            }
+        });
+
+    }
+
+    /**
+     * @Description MissionProgressStatusCallback Method
+     */
+    @Override
+    public void missionProgressStatus(DJIMissionProgressStatus progressStatus) {
+        if (progressStatus instanceof DJIActiveTrackMissionProgressStatus) {
+            DJIActiveTrackMissionProgressStatus trackingStatus = (DJIActiveTrackMissionProgressStatus)progressStatus;
+            StringBuffer sb = new StringBuffer();
+            Tools.addLineToSB(sb, "center x", trackingStatus.getTrackingRect().centerX());
+            Tools.addLineToSB(sb, "center y", trackingStatus.getTrackingRect().centerY());
+            Tools.addLineToSB(sb, "width", trackingStatus.getTrackingRect().width());
+            Tools.addLineToSB(sb, "height", trackingStatus.getTrackingRect().height());
+            Tools.addLineToSB(sb, "Executing State", trackingStatus.getExecutionState().name());
+            Tools.addLineToSB(sb, "is human", trackingStatus.isHuman());
+            Tools.addLineToSB(sb, "Error", trackingStatus.getError() == null ? "Null" : trackingStatus.getError().getDescription());
+            setResultToText(sb.toString());
+            updateActiveTrackRect(mConfirmBtn, trackingStatus);
+        }
+    }
+
     private RectF getActiveTrackRect(View iv) {
         View parent = (View)iv.getParent();
         return new RectF(
@@ -111,7 +186,7 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
         );
     }
 
-    private void postResultRect(final TextView iv, final DJIActiveTrackMissionProgressStatus progressStatus) {
+    private void updateActiveTrackRect(final TextView iv, final DJIActiveTrackMissionProgressStatus progressStatus) {
         if (iv == null || progressStatus == null) return;
         View parent = (View)iv.getParent();
         RectF trackingRect = progressStatus.getTrackingRect();
@@ -152,55 +227,6 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
             }
         });
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tracking_test);
-
-        mVideoSurface = (TextureView)findViewById(R.id.tracking_video_previewer_surface);
-        mVideoSurface.setSurfaceTextureListener(this);
-
-        mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
-
-        mReceivedVideoDataCallBack = new CameraReceivedVideoDataCallback() {
-
-            @Override
-            public void onResult(byte[] videoBuffer, int size) {
-                if(mCodecManager != null){
-                    mCodecManager.sendDataToDecoder(videoBuffer, size);
-                }
-            }
-        };
-        initUI();
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initMissionManager();
-    }
-
-    @Override
-    protected void onDestroy() {
-        try {
-            DJIVideoDataRecver.getInstance().setVideoDataListener(false, null);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if(mCodecManager != null){
-            mCodecManager.destroyCodec();
-        }
-
-        super.onDestroy();
-    }
-
-    public void onReturn(View view){
-        this.finish();
     }
 
     float downX;
@@ -313,38 +339,4 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
         }
     }
 
-    @Override
-    public void onResult(DJIError error) {
-        setResultToText("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
-        setResultToToast("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
-        TrackingTestActivity.this.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                mConfirmBtn.setVisibility(View.INVISIBLE);
-                mStopBtn.setVisibility(View.INVISIBLE);
-                mStopBtn.setClickable(false);
-                mPushBackTv.setVisibility(View.VISIBLE);
-                mPushBackSw.setVisibility(View.VISIBLE);
-            }
-        });
-
-    }
-
-    @Override
-    public void missionProgressStatus(DJIMissionProgressStatus progressStatus) {
-        if (progressStatus instanceof DJIActiveTrackMissionProgressStatus) {
-            DJIActiveTrackMissionProgressStatus trackingStatus = (DJIActiveTrackMissionProgressStatus)progressStatus;
-            StringBuffer sb = new StringBuffer();
-            Tools.addLineToSB(sb, "center x", trackingStatus.getTrackingRect().centerX());
-            Tools.addLineToSB(sb, "center y", trackingStatus.getTrackingRect().centerY());
-            Tools.addLineToSB(sb, "width", trackingStatus.getTrackingRect().width());
-            Tools.addLineToSB(sb, "height", trackingStatus.getTrackingRect().height());
-            Tools.addLineToSB(sb, "Executing State", trackingStatus.getExecutionState().name());
-            Tools.addLineToSB(sb, "is human", trackingStatus.isHuman());
-            Tools.addLineToSB(sb, "Error", trackingStatus.getError() == null ? "Null" : trackingStatus.getError().getDescription());
-            setResultToText(sb.toString());
-            postResultRect(mConfirmBtn, trackingStatus);
-        }
-    }
 }
