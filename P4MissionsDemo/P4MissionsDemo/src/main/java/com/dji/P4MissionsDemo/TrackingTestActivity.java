@@ -1,7 +1,5 @@
 package com.dji.P4MissionsDemo;
 
-import dji.midware.media.DJIVideoDataRecver;
-import dji.sdk.Camera.DJICamera.CameraReceivedVideoDataCallback;
 import dji.sdk.MissionManager.DJIMission.DJIMissionProgressStatus;
 import dji.sdk.MissionManager.DJIMissionManager;
 import dji.sdk.MissionManager.DJIMissionManager.MissionProgressStatusCallback;
@@ -15,7 +13,6 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.TextureView;
 import android.view.View;
 import android.view.TextureView.SurfaceTextureListener;
 import android.view.View.OnClickListener;
@@ -31,7 +28,7 @@ import android.widget.Toast;
 
 public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTextureListener, OnClickListener, OnTouchListener, MissionProgressStatusCallback, DJICompletionCallback {
 
-    private static final String TAG = "ActiveTrackTestActivity";
+    private static final String TAG = "TrackingTestActivity";
 
     private DJIMissionManager mMissionManager;
 
@@ -65,12 +62,6 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
 
     @Override
     protected void onDestroy() {
-        try {
-            DJIVideoDataRecver.getInstance().setVideoDataListener(false, null);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
 
         if(mCodecManager != null){
             mCodecManager.destroyCodec();
@@ -125,9 +116,8 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
         DJIBaseProduct product = DJIDemoApplication.getProductInstance();
 
         if (product == null || !product.isConnected()) {
-            setResultToToast("Disconnect");
+            setResultToToast("Disconnected");
             mMissionManager = null;
-            return;
         } else {
             mMissionManager = product.getMissionManager();
             mMissionManager.setMissionProgressStatusCallback(this);
@@ -164,13 +154,13 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
         if (progressStatus instanceof DJIActiveTrackMissionProgressStatus) {
             DJIActiveTrackMissionProgressStatus trackingStatus = (DJIActiveTrackMissionProgressStatus)progressStatus;
             StringBuffer sb = new StringBuffer();
-            Tools.addLineToSB(sb, "center x", trackingStatus.getTrackingRect().centerX());
-            Tools.addLineToSB(sb, "center y", trackingStatus.getTrackingRect().centerY());
-            Tools.addLineToSB(sb, "width", trackingStatus.getTrackingRect().width());
-            Tools.addLineToSB(sb, "height", trackingStatus.getTrackingRect().height());
-            Tools.addLineToSB(sb, "Executing State", trackingStatus.getExecutionState().name());
-            Tools.addLineToSB(sb, "is human", trackingStatus.isHuman());
-            Tools.addLineToSB(sb, "Error", trackingStatus.getError() == null ? "Null" : trackingStatus.getError().getDescription());
+            Utils.addLineToSB(sb, "center x", trackingStatus.getTrackingRect().centerX());
+            Utils.addLineToSB(sb, "center y", trackingStatus.getTrackingRect().centerY());
+            Utils.addLineToSB(sb, "width", trackingStatus.getTrackingRect().width());
+            Utils.addLineToSB(sb, "height", trackingStatus.getTrackingRect().height());
+            Utils.addLineToSB(sb, "Executing State", trackingStatus.getExecutionState().name());
+            Utils.addLineToSB(sb, "is human", trackingStatus.isHuman());
+            Utils.addLineToSB(sb, "Error", trackingStatus.getError() == null ? "No Errors" : trackingStatus.getError().getDescription());
             setResultToText(sb.toString());
             updateActiveTrackRect(mConfirmBtn, trackingStatus);
         }
@@ -265,7 +255,8 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
 
             case MotionEvent.ACTION_UP:
                 if (mMissionManager != null) {
-                    DJIActiveTrackMission activeTrackMission = isDrawingRect ? new DJIActiveTrackMission(getActiveTrackRect(mSendRectIV)) : new DJIActiveTrackMission(new PointF(downX / mBgLayout.getWidth(), downY / mBgLayout.getHeight()));
+                    DJIActiveTrackMission activeTrackMission = isDrawingRect ? new DJIActiveTrackMission(getActiveTrackRect(mSendRectIV))
+                            : new DJIActiveTrackMission(new PointF(downX / mBgLayout.getWidth(), downY / mBgLayout.getHeight()));
                     activeTrackMission.isRetreatEnabled = mPushBackSw.isChecked();
                     mMissionManager.prepareMission(activeTrackMission, null, new DJICompletionCallback() {
 

@@ -1,6 +1,5 @@
 package com.dji.P4MissionsDemo;
 
-import dji.midware.media.DJIVideoDataRecver;
 import dji.sdk.MissionManager.DJIMission.DJIMissionProgressStatus;
 import dji.sdk.MissionManager.DJIMissionManager;
 import dji.sdk.MissionManager.DJIMissionManager.MissionProgressStatusCallback;
@@ -14,7 +13,6 @@ import android.graphics.PointF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.TextureView;
 import android.view.View;
 import android.view.TextureView.SurfaceTextureListener;
 import android.view.View.OnClickListener;
@@ -31,7 +29,7 @@ import android.widget.Toast;
 
 public class PointingTestActivity extends DemoBaseActivity implements SurfaceTextureListener, OnClickListener, OnTouchListener, MissionProgressStatusCallback, DJICompletionCallback {
     
-    private static final String TAG = "TrackingTestActivity";
+    private static final String TAG = "PointingTestActivity";
     
     private DJIMissionManager mMissionManager;
     private DJITapFlyMission mTapFlyMission;
@@ -64,12 +62,6 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
 
     @Override
     protected void onDestroy() {
-        try {
-            DJIVideoDataRecver.getInstance().setVideoDataListener(false, null);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
 
         if(mCodecManager != null){
             mCodecManager.destroyCodec();
@@ -162,7 +154,7 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
         DJIBaseProduct product = DJIDemoApplication.getProductInstance();
         
         if (product == null || !product.isConnected()) {
-            setResultToToast("Disconnect");
+            setResultToToast("Disconnected");
             mMissionManager = null;
             return;
         } else {
@@ -194,14 +186,14 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
         if (progressStatus instanceof DJITapFlyMissionProgressStatus) {
             DJITapFlyMissionProgressStatus pointingStatus = (DJITapFlyMissionProgressStatus)progressStatus;
             StringBuffer sb = new StringBuffer();
-            Tools.addLineToSB(sb, "Flight state", pointingStatus.getExecutionState().name());
-            Tools.addLineToSB(sb, "pointing direction X", pointingStatus.getDirection().x);
-            Tools.addLineToSB(sb, "pointing direction Y", pointingStatus.getDirection().y);
-            Tools.addLineToSB(sb, "pointing direction Z", pointingStatus.getDirection().z);
-            Tools.addLineToSB(sb, "point x", pointingStatus.getImageLocation().x);
-            Tools.addLineToSB(sb, "point y", pointingStatus.getImageLocation().y);
-            Tools.addLineToSB(sb, "Bypass state", pointingStatus.getBypassDirection().name());
-            Tools.addLineToSB(sb, "Error", pointingStatus.getError());
+            Utils.addLineToSB(sb, "Flight state", pointingStatus.getExecutionState().name());
+            Utils.addLineToSB(sb, "pointing direction X", pointingStatus.getDirection().x);
+            Utils.addLineToSB(sb, "pointing direction Y", pointingStatus.getDirection().y);
+            Utils.addLineToSB(sb, "pointing direction Z", pointingStatus.getDirection().z);
+            Utils.addLineToSB(sb, "point x", pointingStatus.getImageLocation().x);
+            Utils.addLineToSB(sb, "point y", pointingStatus.getImageLocation().y);
+            Utils.addLineToSB(sb, "Bypass state", pointingStatus.getBypassDirection().name());
+            Utils.addLineToSB(sb, "Error", pointingStatus.getError() == null ? "No Errors" : pointingStatus.getError().getDescription());
             setResultToText(sb.toString());
             showPointByTapFlyPoint(pointingStatus.getImageLocation(), mRstPointIv);
         }
@@ -328,7 +320,6 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
             }
         } else {
             setResultToToast("Mission manager is null");
-            return;
         }
     }
 

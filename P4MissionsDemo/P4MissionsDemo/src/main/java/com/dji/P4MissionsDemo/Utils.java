@@ -1,6 +1,6 @@
 package com.dji.P4MissionsDemo;
 
-public class Tools {
+public class Utils {
 	
 	public static void addLineToSB(StringBuffer sb, String name, Object value) {
         if (sb == null) return;
