@@ -858,7 +858,7 @@ public RectF rect
    
    Here is a diagram to show the coordinate transformation of the ActiveTrack mission:
 
-![tapFlyMissionCoordinate](./Images/android_activeTrackMissionCoordinate.png)
+![ActiveTrackMissionCoordinate](./Images/android_ActiveTrackMissionCoordinateSystem.png)
 
 As the diagram shown above, you can see the process of transformation. 
 
