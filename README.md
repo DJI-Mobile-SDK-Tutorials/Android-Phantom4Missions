@@ -377,7 +377,7 @@ This xml file will help to setup the two TextViews with "title" and "desc" ids f
 
 Now, if you check the activity_main.xml file, you can see the preview screenshot of MainActivity as shown below:
    
-![MainActivity](./Images/MainActivityImage.png)
+![MainActivity](./Images/mainActivityImage.png)
 
 #### 4. Creating the PointingTestActivity
 
