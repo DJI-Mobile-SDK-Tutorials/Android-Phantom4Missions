@@ -281,7 +281,7 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
                                     }
                                 });
                             } else {
-                                setResultToToast("Prepare: " + error.getDescription());
+                                setResultToToast("Prepare: " + (error == null ? "Success" : error.getDescription()));
                             }
                         }
                     });

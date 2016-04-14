@@ -749,7 +749,7 @@ public void onCreate() {
 private DJISDKManager.DJISDKManagerCallback mDJISDKManagerCallback = new DJISDKManager.DJISDKManagerCallback() {
     @Override
     public void onGetRegisteredResult(DJIError error) {
-        Log.d(TAG, error.getDescription());
+        Log.d(TAG, error == null ? "Success" : error.getDescription());
         if(error == DJISDKError.REGISTRATION_SUCCESS) {
             DJISDKManager.getInstance().startConnectionToProduct();
             Handler handler = new Handler(Looper.getMainLooper());
@@ -1380,7 +1380,7 @@ Moreover, let's override the `onTouch()` method to track the ACTION_DOWN, ACTION
                                     }
                                 });
                             } else {
-                                setResultToToast("Prepare: " + error.getDescription());
+                                setResultToToast("Prepare: " + (error == null ? "Success" : error.getDescription()));
                             }
                         }
                     });

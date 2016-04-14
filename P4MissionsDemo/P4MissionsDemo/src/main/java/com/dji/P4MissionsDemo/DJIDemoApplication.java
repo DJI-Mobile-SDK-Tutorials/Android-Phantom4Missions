@@ -46,7 +46,7 @@ public class DJIDemoApplication extends Application{
 
         @Override
         public void onGetRegisteredResult(DJIError error) {
-        	Log.d(TAG, error.getDescription());
+            Log.d(TAG, error == null ? "success" : error.getDescription());
             if(error == DJISDKError.REGISTRATION_SUCCESS) {
                 DJISDKManager.getInstance().startConnectionToProduct();
                 Handler handler = new Handler(Looper.getMainLooper());
