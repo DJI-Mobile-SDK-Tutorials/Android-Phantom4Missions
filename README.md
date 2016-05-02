@@ -115,7 +115,7 @@ public class DJIDemoApplication extends Application{
 
 #### 2. Implementing DemoBaseActivity Class
 
-   Similiarly, create a new Empty Activity class with the name of "DemoBaseActivity" in the `com.dji.p4MissionsDemo` package. Remember to deselect the "Generate Layout File". Replace the code with the following, remember to import the related classes as Android Studio suggested:
+Similiarly, create a new Empty Activity class with the name of "DemoBaseActivity" in the `com.dji.p4MissionsDemo` package. Remember to deselect the "Generate Layout File". Replace the code with the following, remember to import the related classes as Android Studio suggested:
    
 ~~~java
 public class DemoBaseActivity extends FragmentActivity implements TextureView.SurfaceTextureListener {

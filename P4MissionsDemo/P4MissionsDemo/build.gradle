@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.dji.P4MissionsDemo"
         minSdkVersion 19
-        targetSdkVersion 21
+        targetSdkVersion 22
     }
 
     buildTypes {
