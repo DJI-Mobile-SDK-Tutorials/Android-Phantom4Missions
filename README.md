@@ -164,6 +164,23 @@ public class MainActivity extends DemoBaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // When the compile and target version is higher than 22, please request the 
+        // following permissions at runtime to ensure the 
+        // SDK work well.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ActivityCompat.requestPermissions(this,
+                    new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.VIBRATE,
+                            Manifest.permission.INTERNET, Manifest.permission.ACCESS_WIFI_STATE,
+                            Manifest.permission.WAKE_LOCK, Manifest.permission.ACCESS_COARSE_LOCATION,
+                            Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.CHANGE_WIFI_STATE, Manifest.permission.MOUNT_UNMOUNT_FILESYSTEMS,
+                            Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.SYSTEM_ALERT_WINDOW,
+                            Manifest.permission.READ_PHONE_STATE,
+                    }
+                    , 1);
+        }
+        
         setContentView(R.layout.activity_main);
 
         mListView = (ListView)findViewById(R.id.listView);
@@ -254,11 +271,13 @@ In the code shown above, we implement the following features:
 
 **1.** Create a ListView to show the "TapFly" and "ActiveTrack" activities' layouts.
 
-**2.** We override the `onCreate()` method to create the `mListView` and invoke the `loadDemoList()` method to refresh the listView.
+**2.** In the `onCreate()` method, we request several permissions at runtime to ensure the SDK works well when the compile and target SDK version is higher than 22(Like Android Marshmallow 6.0 device and API 23).
 
-**3.** Create a DemoInfo class to includes title, desc and demoClass content. Implement the `loadDemoList()` method to add listView data source and implement the `mListView`'s `setOnItemClickListener()` method. Then implement the `onListItemClick()` method by creating an Intent to launch the "TapFly" and "ActiveTrack" Activities from MainActivity.
+**3.** Then create the `mListView` and invoke the `loadDemoList()` method to refresh the listView.
 
-**4.** Create the DemoListAdapter class, which extends from the BaseAdapter class, override the `getView()` method to update the `title` and `desc` variables' text content. Also, override the `getCount()`, `getItem()` and `getitemId()` interface methods.
+**4.** Create a DemoInfo class to includes title, desc and demoClass content. Implement the `loadDemoList()` method to add listView data source and implement the `mListView`'s `setOnItemClickListener()` method. Then implement the `onListItemClick()` method by creating an Intent to launch the "TapFly" and "ActiveTrack" Activities from MainActivity.
+
+**5.** Create the DemoListAdapter class, which extends from the BaseAdapter class, override the `getView()` method to update the `title` and `desc` variables' text content. Also, override the `getCount()`, `getItem()` and `getitemId()` interface methods.
 
 ##### Implementing the MainActivity Layout
 

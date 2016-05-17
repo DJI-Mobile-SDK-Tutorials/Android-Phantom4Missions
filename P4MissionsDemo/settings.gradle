@@ -1,2 +1,2 @@
-include ':dJISDKLIB'
 include ':P4MissionsDemo'
+include ':dJISDKLIB'
