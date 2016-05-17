@@ -53,7 +53,9 @@ android {
     defaultConfig {
         applicationId "com.dji.P4MissionsDemo"
         minSdkVersion 19
-        targetSdkVersion 21
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
     }
     buildTypes {
         release {
@@ -63,7 +65,7 @@ android {
     }
 }
 dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':dJISDKLIB')
 }
 ~~~
@@ -700,9 +702,6 @@ After you finish the above steps, let's register our application with the **App 
 **1.** Let's open the AndroidManifest.xml file and add the following elements to it:
 
 ~~~xml
-<uses-sdk
-        android:minSdkVersion="19"
-        android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
