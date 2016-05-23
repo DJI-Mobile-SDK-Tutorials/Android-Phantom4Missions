@@ -6,7 +6,7 @@
 
 ---
 
-In this tutorial, you will learn how to use the TapFly and ActiveTrack Missions of DJI Android SDK to create a cool application for Phantom 4. Also you will get familiar with DJIMissionManager and using the Simulator of DJI Assistant 2 for testing, which is convenient for you to test the missions indoor. We will use Android Studio 1.5.1 version for demo here. So let's get started!
+In this tutorial, you will learn how to use the TapFly and ActiveTrack Missions of DJI Android SDK to create a cool application for Phantom 4. Also you will get familiar with DJIMissionManager and using the Simulator of DJI Assistant 2 for testing, which is convenient for you to test the missions indoor. We will use Android Studio 2.1.1 version for demo here. So let's get started!
 
    You can download the demo project from this **Github Page**. 
    
@@ -809,7 +809,7 @@ Now let's build and run the project and install it to your Android device. If ev
 
 ![registerSuccess](./Images/registerSuccess.png)
 
-> **Important:** Please check if the "armeabi-v7a" lib folder has been added to your jnLibs folder in **dJISDKLib** successfully before testing resgistering the app. 
+> **Important:** Please check if the "armeabi-v7a", "arm64-v8a" and "x86" lib folders has been added to your jnLibs folder in **dJISDKLib** successfully before testing resgistering the app. 
 > 
 > ![armeabi](./Images/armeabi.png)
 
