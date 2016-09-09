@@ -1,5 +1,3 @@
-> Note: This sample code will be updated to Android SDK 3.3 soon.
-
 # Android-Phantom4Missions
 
 ## Introduction
@@ -10,7 +8,7 @@ From this demo, you will learn how to use the TapFly and ActiveTrack Missions of
 
  - Android Studio 2.0+
  - Android System 4.1+
- - DJI Android SDK 3.2.1
+ - DJI Android SDK 3.3
 
 ## Tutorial
 

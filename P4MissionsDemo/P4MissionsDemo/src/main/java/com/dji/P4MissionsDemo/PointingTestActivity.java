@@ -1,13 +1,13 @@
 package com.dji.P4MissionsDemo;
 
-import dji.sdk.MissionManager.DJIMission.DJIMissionProgressStatus;
-import dji.sdk.MissionManager.DJIMissionManager;
-import dji.sdk.MissionManager.DJIMissionManager.MissionProgressStatusCallback;
-import dji.sdk.MissionManager.DJITapFlyMission;
-import dji.sdk.MissionManager.DJITapFlyMission.DJITapFlyMissionProgressStatus;
-import dji.sdk.base.DJIBaseComponent.DJICompletionCallback;
+import dji.sdk.missionmanager.DJIMission.DJIMissionProgressStatus;
+import dji.sdk.missionmanager.DJIMissionManager;
+import dji.sdk.missionmanager.DJIMissionManager.MissionProgressStatusCallback;
+import dji.sdk.missionmanager.DJITapFlyMission;
+import dji.sdk.missionmanager.DJITapFlyMission.DJITapFlyMissionProgressStatus;
+import dji.common.util.DJICommonCallbacks.DJICompletionCallback;
 import dji.sdk.base.DJIBaseProduct;
-import dji.sdk.base.DJIError;
+import dji.common.error.DJIError;
 
 import android.graphics.PointF;
 import android.os.Bundle;

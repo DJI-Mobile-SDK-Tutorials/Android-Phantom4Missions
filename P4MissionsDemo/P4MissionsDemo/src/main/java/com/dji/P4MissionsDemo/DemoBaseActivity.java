@@ -16,12 +16,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import dji.midware.media.DJIVideoDataRecver;
-import dji.sdk.Camera.DJICamera;
-import dji.sdk.Camera.DJICamera.CameraReceivedVideoDataCallback;
-import dji.sdk.Codec.DJICodecManager;
-import dji.sdk.Products.DJIAircraft;
+import dji.sdk.camera.DJICamera;
+import dji.sdk.camera.DJICamera.CameraReceivedVideoDataCallback;
+import dji.sdk.codec.DJICodecManager;
+import dji.sdk.products.DJIAircraft;
 import dji.sdk.base.DJIBaseProduct;
-import dji.sdk.base.DJIBaseProduct.Model;
+import dji.common.product.Model;
 
 public class DemoBaseActivity extends FragmentActivity implements SurfaceTextureListener {
 

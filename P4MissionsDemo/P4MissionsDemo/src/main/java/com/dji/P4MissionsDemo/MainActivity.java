@@ -1,6 +1,5 @@
 package com.dji.P4MissionsDemo;
 
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -18,7 +17,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.util.ArrayList;
-import dji.sdk.SDKManager.DJISDKManager;
+import dji.sdk.sdkmanager.DJISDKManager;
 import dji.sdk.base.DJIBaseProduct;
 import dji.sdk.base.DJIBaseProduct.DJIVersionCallback;
 
