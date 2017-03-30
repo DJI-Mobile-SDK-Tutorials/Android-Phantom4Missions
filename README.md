@@ -1,5 +1,7 @@
 # Android-Phantom4Missions
 
+> **Note: This Sample Project is developed based on Android SDK v3.5.1, an update version for Android SDK v4.0 will be published soon.**
+
 ## Introduction
 
 From this demo, you will learn how to use the TapFly and ActiveTrack Missions of DJI Android SDK to create a cool application for Phantom 4. You will get familiar with DJIMissionManager and use the Simulator of DJI Assistant 2 for testing, which is convenient for you to test the missions indoor. 
