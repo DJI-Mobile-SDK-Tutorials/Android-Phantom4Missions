@@ -98,8 +98,8 @@
         android:id="@+id/pointing_bg_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/main_title_rl"
-        android:layout_centerInParent="true" >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
 
         <Button
             android:id="@+id/pointing_start_btn"

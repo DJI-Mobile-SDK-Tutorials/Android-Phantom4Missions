@@ -6,12 +6,12 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
+
+import dji.sdk.base.BaseComponent;
+import dji.sdk.base.BaseProduct;
+import dji.sdk.camera.Camera;
+import dji.sdk.products.Aircraft;
 import dji.sdk.sdkmanager.DJISDKManager;
-import dji.sdk.base.DJIBaseComponent;
-import dji.sdk.base.DJIBaseComponent.DJIComponentListener;
-import dji.sdk.base.DJIBaseProduct;
-import dji.sdk.base.DJIBaseProduct.DJIBaseProductListener;
-import dji.sdk.base.DJIBaseProduct.DJIComponentKey;
 import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
 
@@ -21,49 +21,59 @@ public class DJIDemoApplication extends Application{
     
     public static final String FLAG_CONNECTION_CHANGE = "dji_sdk_connection_change";
     
-    private static DJIBaseProduct mProduct;
+    private static BaseProduct mProduct;
     
     private Handler mHandler;
     
-    public static synchronized DJIBaseProduct getProductInstance() {
+    public static synchronized BaseProduct getProductInstance() {
         if (null == mProduct) {
-            mProduct = DJISDKManager.getInstance().getDJIProduct();
+            mProduct = DJISDKManager.getInstance().getProduct();
         }
         return mProduct;
     }
-    
+
+    public static synchronized Camera getCameraInstance() {
+
+        if (getProductInstance() == null) return null;
+
+        Camera camera = null;
+        if (getProductInstance() instanceof Aircraft){
+            camera = ((Aircraft) getProductInstance()).getCamera();
+        }
+        return camera;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         
         mHandler = new Handler(Looper.getMainLooper());
-        DJISDKManager.getInstance().initSDKManager(this, mDJISDKManagerCallback);
-        
+        DJISDKManager.getInstance().registerApp(this, mDJISDKManagerCallback);
     }
-    
-    
-    private DJISDKManager.DJISDKManagerCallback mDJISDKManagerCallback = new DJISDKManager.DJISDKManagerCallback() {
+
+    private DJISDKManager.SDKManagerCallback mDJISDKManagerCallback = new DJISDKManager.SDKManagerCallback() {
 
         @Override
-        public void onGetRegisteredResult(DJIError error) {
+        public void onRegister(DJIError error) {
             Log.d(TAG, error == null ? "success" : error.getDescription());
             if(error == DJISDKError.REGISTRATION_SUCCESS) {
-                DJISDKManager.getInstance().startConnectionToProduct();
                 Handler handler = new Handler(Looper.getMainLooper());
                 handler.post(new Runnable() {
 
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Register Success", Toast.LENGTH_LONG).show();
                     }
                 });
+
+                DJISDKManager.getInstance().startConnectionToProduct();
             } else {
                 Handler handler = new Handler(Looper.getMainLooper());
                 handler.post(new Runnable() {
                     
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(), "register sdk fails, check network is available", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Register sdk fails, check network is available", Toast.LENGTH_LONG).show();
                     }
                 });
                 
@@ -72,38 +82,38 @@ public class DJIDemoApplication extends Application{
         }
 
         @Override
-        public void onProductChanged(DJIBaseProduct oldProduct, DJIBaseProduct newProduct) {
+        public void onProductChange(BaseProduct oldProduct, BaseProduct newProduct) {
 
             mProduct = newProduct;
             if(mProduct != null) {
-                mProduct.setDJIBaseProductListener(mDJIBaseProductListener);
+                mProduct.setBaseProductListener(mDJIBaseProductListener);
             }
             
             notifyStatusChange();
         }
     };
     
-    private DJIBaseProductListener mDJIBaseProductListener = new DJIBaseProductListener() {
+    private BaseProduct.BaseProductListener mDJIBaseProductListener = new BaseProduct.BaseProductListener() {
 
         @Override
-        public void onComponentChange(DJIComponentKey key, DJIBaseComponent oldComponent, DJIBaseComponent newComponent) {
+        public void onComponentChange(BaseProduct.ComponentKey key, BaseComponent oldComponent, BaseComponent newComponent) {
             if(newComponent != null) {
-                newComponent.setDJIComponentListener(mDJIComponentListener);
+                newComponent.setComponentListener(mDJIComponentListener);
             }
             notifyStatusChange();
         }
 
         @Override
-        public void onProductConnectivityChanged(boolean isConnected) {
+        public void onConnectivityChange(boolean isConnected) {
             notifyStatusChange();
         }
         
     };
-    
-    private DJIComponentListener mDJIComponentListener = new DJIComponentListener() {
+
+    private BaseComponent.ComponentListener mDJIComponentListener = new BaseComponent.ComponentListener() {
 
         @Override
-        public void onComponentConnectivityChanged(boolean isConnected) {
+        public void onConnectivityChange(boolean isConnected) {
             notifyStatusChange();
         }
         

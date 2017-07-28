@@ -21,7 +21,9 @@ android {
 }
 
 dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.android.support:multidex:1.0.1'
     compile project(':dJISDKLIB')
 
 }

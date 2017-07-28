@@ -4,8 +4,6 @@
     android:layout_height="fill_parent"
     android:keepScreenOn="true"
     android:orientation="vertical" >
-    
-    
 
     <RelativeLayout
         android:id="@+id/main_title_rl"

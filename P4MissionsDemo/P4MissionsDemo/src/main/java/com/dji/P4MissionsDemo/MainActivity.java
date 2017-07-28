@@ -16,17 +16,23 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import java.util.ArrayList;
-import dji.sdk.sdkmanager.DJISDKManager;
-import dji.sdk.base.DJIBaseProduct;
-import dji.sdk.base.DJIBaseProduct.DJIVersionCallback;
+import android.widget.Toast;
 
-public class MainActivity extends DemoBaseActivity implements View.OnClickListener, DJIVersionCallback {
+import java.util.ArrayList;
+
+import dji.common.error.DJIError;
+import dji.common.useraccount.UserAccountState;
+import dji.common.util.CommonCallbacks;
+import dji.sdk.base.BaseProduct;
+import dji.sdk.sdkmanager.DJISDKManager;
+import dji.sdk.useraccount.UserAccountManager;
+
+public class MainActivity extends DemoBaseActivity {
 	
     public static final String TAG = MainActivity.class.getName();
     
     public String mString = null;
-    private DJIBaseProduct mProduct;
+    private BaseProduct mProduct;
         
     private ArrayList<DemoInfo> demos = new ArrayList<DemoInfo>();
 
@@ -66,12 +72,15 @@ public class MainActivity extends DemoBaseActivity implements View.OnClickListen
         mFirmwareVersionView = (TextView)findViewById(R.id.version_tv);
                 
         loadDemoList();
+
         mDemoListAdapter.notifyDataSetChanged();
         
         updateVersion();
-        DJIBaseProduct product = DJISDKManager.getInstance().getDJIProduct();
-        if(product != null) {
-            product.setDJIVersionCallback(this);
+
+        if ((UserAccountManager.getInstance().getUserAccountState() == UserAccountState.NOT_LOGGED_IN)
+                || (UserAccountManager.getInstance().getUserAccountState() == UserAccountState.TOKEN_OUT_OF_DATE)
+                || (UserAccountManager.getInstance().getUserAccountState() == UserAccountState.INVALID_TOKEN)){
+            loginAccount();
         }
         
     }    
@@ -83,7 +92,6 @@ public class MainActivity extends DemoBaseActivity implements View.OnClickListen
             }
         });
         demos.clear();
-        // SDK_TODO Just for testing
         demos.add(new DemoInfo(R.string.title_activity_tracking_test, R.string.demo_desc_tracking, TrackingTestActivity.class));
         demos.add(new DemoInfo(R.string.title_activity_pointing_test, R.string.demo_desc_pointing, PointingTestActivity.class));
     }
@@ -92,11 +100,6 @@ public class MainActivity extends DemoBaseActivity implements View.OnClickListen
         Intent intent = null;
         intent = new Intent(MainActivity.this, demos.get(index).demoClass);
         this.startActivity(intent);
-    }
-
-    @Override
-    public void onClick(View v) {
-        
     }
     
     @Override
@@ -108,21 +111,7 @@ public class MainActivity extends DemoBaseActivity implements View.OnClickListen
         Log.d(TAG ,"onReturn");  
         this.finish();
     }
-    
-    public void showMessage(String title, String msg) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title)
-                .setMessage(msg)
-                .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-    
+
     @SuppressLint("ViewHolder")
     private class DemoListAdapter extends BaseAdapter {
         public DemoListAdapter() {
@@ -171,37 +160,38 @@ public class MainActivity extends DemoBaseActivity implements View.OnClickListen
         super.onProductChange();
         loadDemoList();
         mDemoListAdapter.notifyDataSetChanged();
-        
         updateVersion();
-        DJIBaseProduct product = DJISDKManager.getInstance().getDJIProduct();
-        if(product != null) {
-            product.setDJIVersionCallback(this);
-        }
     }
-    
-    
-    private boolean checkProduct() {
-		try {
-            mProduct = DJIDemoApplication.getProductInstance();
-        } catch (Exception exception) {
-            mProduct = null;
-            return false;
-        }
-        
-        try {
-	        mProduct = DJIDemoApplication.getProductInstance();
-	    } catch (Exception exception) {
-	        mProduct = null;
-	        return false;
-	    }
-        return true;
-	}
+
+    private void setResultToToast(final String string) {
+        MainActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, string, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loginAccount(){
+
+        UserAccountManager.getInstance().logIntoDJIUserAccount(this, new CommonCallbacks.CompletionCallbackWith<UserAccountState>() {
+            @Override
+            public void onSuccess(UserAccountState userAccountState) {
+                Log.d(TAG ,"Login Success");
+            }
+
+            @Override
+            public void onFailure(DJIError djiError) {
+                setResultToToast("Login Failed: " +  djiError.getDescription());
+            }
+        });
+    }
 
     String version = null;
-    
+
     private void updateVersion() {
 
-        DJIBaseProduct product = DJISDKManager.getInstance().getDJIProduct();
+        BaseProduct product = DJISDKManager.getInstance().getProduct();
         if(product != null) {
             version = product.getFirmwarePackageVersion();
         }
@@ -217,11 +207,4 @@ public class MainActivity extends DemoBaseActivity implements View.OnClickListen
         });
         
     }
-
-    @Override
-    public void onProductVersionChange(String oldVersion, String newVersion) {
-        updateVersion();
-    }
-    
-    
 }

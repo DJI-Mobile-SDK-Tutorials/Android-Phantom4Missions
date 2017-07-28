@@ -116,13 +116,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="fitXY"
-            android:src="@drawable/visual_track_weak"
+            android:src="@drawable/visual_track_cannotconfirm"
             android:visibility="invisible" />
 
         <ImageButton
             android:id="@+id/tracking_stop_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:scaleType="fitXY"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -130,14 +130,6 @@
             android:background="#00000000"
             android:visibility="invisible"
             android:src="@drawable/mission_stop" />
-
-        <Button
-            android:id="@+id/tracking_confirm_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#5500ff00"
-            android:visibility="invisible"
-            android:text="OK"/>
 
         <TextView
             android:id="@+id/tracking_backward_tv"
@@ -156,6 +148,54 @@
             android:checked="true"
             android:text="" />
 
+        <TextView
+            android:id="@+id/gesture_mode_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GestureModeEnable"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/gesture_mode_enable_sw" />
+
+        <Button
+            android:id="@+id/recommended_configuration_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="11dp"
+            android:text="Config"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/tracking_stop_btn" />
+
+        <Button
+            android:id="@+id/confirm_btn"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:text="A"
+            android:layout_above="@+id/tracking_stop_btn"
+            android:layout_alignStart="@+id/tracking_stop_btn"
+            android:visibility="invisible"
+            android:layout_alignEnd="@+id/tracking_stop_btn" />
+
+        <Button
+            android:id="@+id/reject_btn"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="90dp"
+            android:layout_marginStart="10dp"
+            android:visibility="invisible"
+            android:text="R" />
+
+        <Switch
+            android:id="@+id/gesture_mode_enable_sw"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_below="@+id/gesture_mode_tv"
+            android:layout_toEndOf="@+id/tracking_pull_back_sw" />
+
     </RelativeLayout>
+
 
 </RelativeLayout>

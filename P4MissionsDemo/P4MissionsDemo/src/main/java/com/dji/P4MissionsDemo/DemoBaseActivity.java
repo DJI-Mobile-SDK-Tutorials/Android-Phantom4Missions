@@ -7,35 +7,33 @@ import android.content.IntentFilter;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.TextureView;
 import android.view.TextureView.SurfaceTextureListener;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-
-import dji.midware.media.DJIVideoDataRecver;
-import dji.sdk.camera.DJICamera;
-import dji.sdk.camera.DJICamera.CameraReceivedVideoDataCallback;
+import dji.sdk.camera.VideoFeeder;
 import dji.sdk.codec.DJICodecManager;
-import dji.sdk.products.DJIAircraft;
-import dji.sdk.base.DJIBaseProduct;
 import dji.common.product.Model;
+import dji.sdk.camera.Camera;
+import dji.sdk.base.BaseProduct;
+import dji.sdk.products.Aircraft;
 
 public class DemoBaseActivity extends FragmentActivity implements SurfaceTextureListener {
 
-    private DJIBaseProduct mProduct;
-    private DJICamera mCamera;
-    
+    private static final String TAG = MainActivity.class.getName();
+    protected VideoFeeder.VideoDataCallback mReceivedVideoDataCallBack = null;
+    protected DJICodecManager mCodecManager = null;
+    private BaseProduct mProduct;
+
     //To store index chosen in PopupNumberPicker listener
     protected static int[] INDEX_CHOSEN = {-1, -1, -1};
-    
+
     protected TextView mConnectStatusTextView;
-    
+
     protected TextureView mVideoSurface = null;
-    protected CameraReceivedVideoDataCallback mReceivedVideoDataCallBack = null;
-    protected DJICodecManager mCodecManager = null;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,23 +44,23 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
         registerReceiver(mReceiver, filter);
 
         mVideoSurface = (TextureView) findViewById(R.id.video_previewer_surface);
-        
+        mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
+
         if (null != mVideoSurface) {
             mVideoSurface.setSurfaceTextureListener(this);
-            
-            mConnectStatusTextView = (TextView) findViewById(R.id.ConnectStatusTextView);
-
-            mReceivedVideoDataCallBack = new CameraReceivedVideoDataCallback() {
-
-                @Override
-                public void onResult(byte[] videoBuffer, int size) {
-                    if(mCodecManager != null){
-                        mCodecManager.sendDataToDecoder(videoBuffer, size);
-                    }
-                }
-            };
         }
-        initPreviewer();
+
+        // The callback for receiving the raw H264 video data for camera live view
+        mReceivedVideoDataCallBack = new VideoFeeder.VideoDataCallback() {
+
+            @Override
+            public void onReceive(byte[] videoBuffer, int size) {
+                if(mCodecManager != null){
+                    mCodecManager.sendDataToDecoder(videoBuffer, size);
+                }
+            }
+        };
+
     }
 
     protected BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -76,52 +74,46 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
     };
     
     protected void onProductChange() {
-        
+        initPreviewer();
     }
     
     @Override
     protected void onStart() {
         super.onStart();
-        
-        
+
     }
 
     @Override
     protected void onResume() {
+        Log.e(TAG, "onResume");
         super.onResume();
-        
         updateTitleBar();
-        
-        
+        initPreviewer();
+        onProductChange();
+
+        if(mVideoSurface == null) {
+            Log.e(TAG, "mVideoSurface is null");
+        }
     }
     
     @Override
     protected void onPause() {
-        try {
-            DJIVideoDataRecver.getInstance().setVideoDataListener(false, null);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        if(mCodecManager != null){
-            mCodecManager.destroyCodec();
-        }
-        
+        Log.e(TAG, "onPause");
+        uninitPreviewer();
         super.onPause();
     }
-    
-    
-    
+
     @Override
     protected void onStop() {
+        Log.e(TAG, "onStop");
         super.onStop();
     }
 
     @Override
     protected void onDestroy() {
+        Log.e(TAG, "onDestroy");
+        uninitPreviewer();
         super.onDestroy();
-        unregisterReceiver(mReceiver);
     }
     
     private void showToast(final String msg) {
@@ -139,16 +131,27 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
             mProduct = null;
         }
         
-        if (null == mProduct || !mProduct.isConnected()) {
-            mCamera = null;
-            showToast("Disconnect");
+        if (mProduct == null || !mProduct.isConnected()) {
+            Log.d(TAG, "Disconnect");
         } else {
-        	if (!mProduct.getModel().equals(Model.UnknownAircraft)) {
-	            mCamera = mProduct.getCamera();
-	            if (mCamera != null){
-	            	mCamera.setDJICameraReceivedVideoDataCallback(mReceivedVideoDataCallBack);
-	            }
+            if (null != mVideoSurface) {
+                mVideoSurface.setSurfaceTextureListener(this);
+            }
+
+        	if (!mProduct.getModel().equals(Model.UNKNOWN_AIRCRAFT)) {
+                if (VideoFeeder.getInstance().getVideoFeeds() != null
+                        && VideoFeeder.getInstance().getVideoFeeds().size() > 0) {
+                    VideoFeeder.getInstance().getVideoFeeds().get(0).setCallback(mReceivedVideoDataCallBack);
+                }
         	}
+        }
+    }
+
+    private void uninitPreviewer() {
+        Camera camera = DJIDemoApplication.getCameraInstance();
+        if (camera != null){
+            // Reset the callback
+            VideoFeeder.getInstance().getVideoFeeds().get(0).setCallback(null);
         }
     }
     
@@ -202,14 +205,14 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
     private void updateTitleBar() {
         if(mConnectStatusTextView == null) return;
         boolean ret = false;
-        DJIBaseProduct product = DJIDemoApplication.getProductInstance();
+        BaseProduct product = DJIDemoApplication.getProductInstance();
         if (product != null) {
             if(product.isConnected()) {
                 mConnectStatusTextView.setText(DJIDemoApplication.getProductInstance().getModel().getDisplayName() + " Connected");
                 ret = true;
             } else {
-                if(product instanceof DJIAircraft) {
-                    DJIAircraft aircraft = (DJIAircraft)product;
+                if(product instanceof Aircraft) {
+                    Aircraft aircraft = (Aircraft)product;
                     if(aircraft.getRemoteController() != null) {
                     }
                     if(aircraft.getRemoteController() != null && aircraft.getRemoteController().isConnected()) {
@@ -221,7 +224,7 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
         }
         
         if(!ret) {
-            mConnectStatusTextView.setText("Disconnected"); 
+//            mConnectStatusTextView.setText("Disconnected");
         }
     }
     

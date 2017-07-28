@@ -1,16 +1,19 @@
 package com.dji.P4MissionsDemo;
 
-import dji.sdk.missionmanager.DJIMission.DJIMissionProgressStatus;
-import dji.sdk.missionmanager.DJIMissionManager;
-import dji.sdk.missionmanager.DJIMissionManager.MissionProgressStatusCallback;
-import dji.sdk.missionmanager.DJITapFlyMission;
-import dji.sdk.missionmanager.DJITapFlyMission.DJITapFlyMissionProgressStatus;
-import dji.common.util.DJICommonCallbacks.DJICompletionCallback;
-import dji.sdk.base.DJIBaseProduct;
 import dji.common.error.DJIError;
+import dji.common.mission.tapfly.TapFlyExecutionState;
+import dji.common.mission.tapfly.TapFlyMission;
+import dji.common.mission.tapfly.TapFlyMissionState;
+import dji.common.mission.tapfly.TapFlyMode;
+import dji.common.util.CommonCallbacks;
+import dji.sdk.mission.tapfly.TapFlyMissionEvent;
+import dji.sdk.mission.tapfly.TapFlyMissionOperator;
+import dji.sdk.mission.tapfly.TapFlyMissionOperatorListener;
+import dji.sdk.sdkmanager.DJISDKManager;
 
 import android.graphics.PointF;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,12 +30,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PointingTestActivity extends DemoBaseActivity implements SurfaceTextureListener, OnClickListener, OnTouchListener, MissionProgressStatusCallback, DJICompletionCallback {
+public class PointingTestActivity extends DemoBaseActivity implements SurfaceTextureListener, OnClickListener, OnTouchListener {
     
     private static final String TAG = "PointingTestActivity";
-    
-    private DJIMissionManager mMissionManager;
-    private DJITapFlyMission mTapFlyMission;
+
+    private TapFlyMission mTapFlyMission;
 
     private ImageButton mPushDrawerIb;
     private SlidingDrawer mPushDrawerSd;
@@ -46,18 +48,62 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
     private TextView mSpeedTv;
     private SeekBar mSpeedSb;
 
+    private TapFlyMissionOperator getTapFlyOperator() {
+        return DJISDKManager.getInstance().getMissionControl().getTapFlyMissionOperator();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         setContentView(R.layout.activity_pointing_test);
         super.onCreate(savedInstanceState);
         initUI();
+        getTapFlyOperator().addListener(new TapFlyMissionOperatorListener() {
+            @Override
+            public void onUpdate(@Nullable TapFlyMissionEvent aggregation) {
+                TapFlyExecutionState executionState = aggregation.getProgressState();
+                if (executionState != null){
+                    showPointByTapFlyPoint(executionState.getImageLocation(), mRstPointIv);
+                }
+
+                StringBuffer sb = new StringBuffer();
+                String errorInformation = (aggregation.getError() == null ? "null" : aggregation.getError().getDescription()) + "\n";
+                String currentState = aggregation.getCurrentState() == null ? "null" : aggregation.getCurrentState().getName();
+                String previousState = aggregation.getPreviousState() == null ? "null" : aggregation.getPreviousState().getName();
+                Utils.addLineToSB(sb, "CurrentState: ", currentState);
+                Utils.addLineToSB(sb, "PreviousState: ", previousState);
+                Utils.addLineToSB(sb, "Error:", errorInformation);
+
+                TapFlyExecutionState progressState = aggregation.getProgressState();
+
+                if (progressState != null) {
+                    Utils.addLineToSB(sb, "Heading: ", progressState.getRelativeHeading());
+                    Utils.addLineToSB(sb, "PointX: ", progressState.getImageLocation().x);
+                    Utils.addLineToSB(sb, "PointY: ", progressState.getImageLocation().y);
+                    Utils.addLineToSB(sb, "BypassDirection: ", progressState.getBypassDirection().name());
+                    Utils.addLineToSB(sb, "VectorX: ", progressState.getDirection().getX());
+                    Utils.addLineToSB(sb, "VectorY: ", progressState.getDirection().getY());
+                    Utils.addLineToSB(sb, "VectorZ: ", progressState.getDirection().getZ());
+                    setResultToText(sb.toString());
+                }
+
+                TapFlyMissionState missionState = aggregation.getCurrentState();
+                if (!((missionState == TapFlyMissionState.EXECUTING) || (missionState == TapFlyMissionState.EXECUTION_PAUSED)
+                        || (missionState == TapFlyMissionState.EXECUTION_RESETTING))){
+                    setVisible(mRstPointIv, false);
+                    setVisible(mStopBtn, false);
+                }else
+                {
+                    setVisible(mStopBtn, true);
+                    setVisible(mStartBtn, false);
+                }
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initMissionManager();
+        initTapFlyMission();
     }
 
     @Override
@@ -139,64 +185,20 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                DJITapFlyMission.setAutoFlightSpeed(getSpeed(), new DJICompletionCallback() {
-
+                getTapFlyOperator().setAutoFlightSpeed(getSpeed(), new CommonCallbacks.CompletionCallback() {
                     @Override
                     public void onResult(DJIError error) {
-                        setResultToToast(error == null ? "Success" : error.getDescription());
+                        setResultToToast(error == null ? "Set Auto Flight Speed Success" : error.getDescription());
                     }
                 });
             }
         });
     }
     
-    private void initMissionManager() {
-        DJIBaseProduct product = DJIDemoApplication.getProductInstance();
-        
-        if (product == null || !product.isConnected()) {
-            setResultToToast("Disconnected");
-            mMissionManager = null;
-            return;
-        } else {
-            mMissionManager = product.getMissionManager();
-            mMissionManager.setMissionProgressStatusCallback(this);
-            mMissionManager.setMissionExecutionFinishedCallback(this);
-        }
-        mTapFlyMission = new DJITapFlyMission();
-    }
-
-    /**
-     * @Description : MissionExecutionFinishedCallback Method
-     */
-    @Override
-    public void onResult(DJIError error) {
-        setResultToText("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
-        setResultToToast("Execution finished: " + (error == null ? "Success!" : error.getDescription()));
-        setVisible(mRstPointIv, false);
-        setVisible(mStopBtn, false);
-        setVisible(mAssisTv, true);
-        setVisible(mAssisSw, true);
-    }
-
-    /**
-     * @Description MissionProgressStatusCallback Method
-     */
-    @Override
-    public void missionProgressStatus(DJIMissionProgressStatus progressStatus) {
-        if (progressStatus instanceof DJITapFlyMissionProgressStatus) {
-            DJITapFlyMissionProgressStatus pointingStatus = (DJITapFlyMissionProgressStatus)progressStatus;
-            StringBuffer sb = new StringBuffer();
-            Utils.addLineToSB(sb, "Flight state", pointingStatus.getExecutionState().name());
-            Utils.addLineToSB(sb, "pointing direction X", pointingStatus.getDirection().x);
-            Utils.addLineToSB(sb, "pointing direction Y", pointingStatus.getDirection().y);
-            Utils.addLineToSB(sb, "pointing direction Z", pointingStatus.getDirection().z);
-            Utils.addLineToSB(sb, "point x", pointingStatus.getImageLocation().x);
-            Utils.addLineToSB(sb, "point y", pointingStatus.getImageLocation().y);
-            Utils.addLineToSB(sb, "Bypass state", pointingStatus.getBypassDirection().name());
-            Utils.addLineToSB(sb, "Error", pointingStatus.getError() == null ? "No Errors" : pointingStatus.getError().getDescription());
-            setResultToText(sb.toString());
-            showPointByTapFlyPoint(pointingStatus.getImageLocation(), mRstPointIv);
-        }
+    private void initTapFlyMission() {
+        mTapFlyMission = new TapFlyMission();
+        mTapFlyMission.isHorizontalObstacleAvoidanceEnabled = mAssisSw.isChecked();
+        mTapFlyMission.tapFlyMode = TapFlyMode.FORWARD;
     }
 
     private PointF getTapFlyPoint(View iv) {
@@ -240,26 +242,14 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
             
             switch (event.getAction()) {
             case MotionEvent.ACTION_UP:
-                if (mMissionManager != null) {
+                if (mTapFlyMission != null) {
                     mStartBtn.setVisibility(View.VISIBLE);
                     mStartBtn.setX(event.getX() - mStartBtn.getWidth() / 2);
                     mStartBtn.setY(event.getY() - mStartBtn.getHeight() / 2);
                     mStartBtn.requestLayout();
-                    mTapFlyMission.imageLocationToCalculateDirection = getTapFlyPoint(mStartBtn);
-                    mMissionManager.prepareMission(mTapFlyMission, null, new DJICompletionCallback() {
-                        
-                        @Override
-                        public void onResult(DJIError error) {
-                            if (error == null) {
-                                setVisible(mStartBtn, true);
-                            } else {
-                                setVisible(mStartBtn, false);
-                            }
-                            setResultToToast(error == null ? "Success" : error.getDescription());
-                        }
-                    });
+                    mTapFlyMission.target = getTapFlyPoint(mStartBtn);
                 } else {
-                    setResultToToast("Mission manager is null");
+                    setResultToToast("TapFlyMission is null");
                 }
                 break;
 
@@ -280,46 +270,32 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
             }
             return;
         }
-        if (mMissionManager != null) {
+        if (getTapFlyOperator() != null) {
             switch (v.getId()) { 
             case R.id.pointing_start_btn:
-                mTapFlyMission.autoFlightSpeed = getSpeed();
-                mTapFlyMission.isHorizontalObstacleAvoidanceEnabled = mAssisSw.isChecked();
-
-                mMissionManager.startMissionExecution(new DJICompletionCallback() {
-
+                getTapFlyOperator().startMission(mTapFlyMission, new CommonCallbacks.CompletionCallback() {
                     @Override
                     public void onResult(DJIError error) {
-                        if (error == null) {
+                        setResultToToast(error == null ? "Start Mission Successfully" : error.getDescription());
+                        if (error == null){
                             setVisible(mStartBtn, false);
-                            setVisible(mStopBtn, true);
-                            setVisible(mAssisTv, false);
-                            setVisible(mAssisSw, false);
-                        } else {
-                            setVisible(mStartBtn, true);
-                            setVisible(mStopBtn, false);
-                            setVisible(mAssisTv, true);
-                            setVisible(mAssisSw, true);
                         }
-                        setResultToToast("Start: " + (error == null ? "Success" : error.getDescription()));
                     }
                 });
                 break;
             case R.id.pointing_stop_btn:
-                mMissionManager.stopMissionExecution(new DJICompletionCallback() {
-
+                getTapFlyOperator().stopMission(new CommonCallbacks.CompletionCallback() {
                     @Override
                     public void onResult(DJIError error) {
-                        setResultToToast("Stop: " + (error == null ? "Success" : error.getDescription()));
-                    } 
+                        setResultToToast(error == null ? "Stop Mission Successfully" : error.getDescription());
+                    }
                 });
-                break; 
- 
+                break;
             default:
                 break;
             }
         } else {
-            setResultToToast("Mission manager is null");
+            setResultToToast("TapFlyMission Operator is null");
         }
     }
 
