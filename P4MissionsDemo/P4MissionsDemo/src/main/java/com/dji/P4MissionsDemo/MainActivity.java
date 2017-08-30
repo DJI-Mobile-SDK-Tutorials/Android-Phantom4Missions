@@ -77,12 +77,6 @@ public class MainActivity extends DemoBaseActivity {
         
         updateVersion();
 
-        if ((UserAccountManager.getInstance().getUserAccountState() == UserAccountState.NOT_LOGGED_IN)
-                || (UserAccountManager.getInstance().getUserAccountState() == UserAccountState.TOKEN_OUT_OF_DATE)
-                || (UserAccountManager.getInstance().getUserAccountState() == UserAccountState.INVALID_TOKEN)){
-            loginAccount();
-        }
-        
     }    
     
     private void loadDemoList() {
@@ -161,6 +155,7 @@ public class MainActivity extends DemoBaseActivity {
         loadDemoList();
         mDemoListAdapter.notifyDataSetChanged();
         updateVersion();
+        loginAccount();
     }
 
     private void setResultToToast(final String string) {

@@ -1,2 +1,1 @@
-include ':P4MissionsDemo'
-include ':dJISDKLIB'
+include ':P4MissionsDemo', ':dji_android_sdk'
