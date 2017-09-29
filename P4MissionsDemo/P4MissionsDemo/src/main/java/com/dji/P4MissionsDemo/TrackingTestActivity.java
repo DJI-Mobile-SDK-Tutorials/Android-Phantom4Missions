@@ -54,8 +54,6 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
     // flags
     private boolean isDrawingRect = false;
 
-    private int globalIndex = 0;
-
     private ActiveTrackOperator getActiveTrackOperator() {
         return DJISDKManager.getInstance().getMissionControl().getActiveTrackOperator();
     }
@@ -328,9 +326,8 @@ public class TrackingTestActivity extends DemoBaseActivity implements SurfaceTex
                 RectF rectF = getActiveTrackRect(mSendRectIV);
                 PointF pointF = new PointF(downX / mBgLayout.getWidth(), downY / mBgLayout.getHeight());
                 RectF pointRectF = new RectF(pointF.x, pointF.y, 0, 0);
-                int index = ++globalIndex;
-                mActiveTrackMission = isDrawingRect ? new ActiveTrackMission(rectF, index, ActiveTrackMode.TRACE) :
-                        new ActiveTrackMission(pointRectF, index, ActiveTrackMode.TRACE);
+                mActiveTrackMission = isDrawingRect ? new ActiveTrackMission(rectF, ActiveTrackMode.TRACE) :
+                        new ActiveTrackMission(pointRectF, ActiveTrackMode.TRACE);
 
                 getActiveTrackOperator().startTracking(mActiveTrackMission, new CommonCallbacks.CompletionCallback() {
                     @Override

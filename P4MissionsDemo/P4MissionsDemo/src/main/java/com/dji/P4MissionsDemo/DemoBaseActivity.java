@@ -138,12 +138,9 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
                 mVideoSurface.setSurfaceTextureListener(this);
             }
 
-        	if (!mProduct.getModel().equals(Model.UNKNOWN_AIRCRAFT)) {
-                if (VideoFeeder.getInstance().getVideoFeeds() != null
-                        && VideoFeeder.getInstance().getVideoFeeds().size() > 0) {
-                    VideoFeeder.getInstance().getVideoFeeds().get(0).setCallback(mReceivedVideoDataCallBack);
-                }
-        	}
+            if (!mProduct.getModel().equals(Model.UNKNOWN_AIRCRAFT)) {
+                VideoFeeder.getInstance().getPrimaryVideoFeed().setCallback(mReceivedVideoDataCallBack);
+            }
         }
     }
 
@@ -151,7 +148,7 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
         Camera camera = DJIDemoApplication.getCameraInstance();
         if (camera != null){
             // Reset the callback
-            VideoFeeder.getInstance().getVideoFeeds().get(0).setCallback(null);
+            VideoFeeder.getInstance().getPrimaryVideoFeed().setCallback(null);
         }
     }
     

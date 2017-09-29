@@ -1,1 +1,1 @@
-include ':P4MissionsDemo', ':dji_android_sdk'
+include ':P4MissionsDemo'
