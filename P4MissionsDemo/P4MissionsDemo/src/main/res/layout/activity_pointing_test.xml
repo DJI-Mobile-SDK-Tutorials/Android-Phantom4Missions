@@ -95,6 +95,7 @@
     </SlidingDrawer>
 
     <RelativeLayout
+        android:layout_below="@+id/main_title_rl"
         android:id="@+id/pointing_bg_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

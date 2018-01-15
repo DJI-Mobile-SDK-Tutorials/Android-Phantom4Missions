@@ -30,7 +30,7 @@
         android:required="true" />
 
     <application
-        android:name=".DJIDemoApplication"
+        android:name=".MApplication"
         android:allowBackup="true"
         tools:replace="android:icon"
         android:icon="@drawable/ic_launcher"
