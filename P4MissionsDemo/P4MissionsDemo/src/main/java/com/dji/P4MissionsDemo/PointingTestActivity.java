@@ -60,7 +60,7 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
         getTapFlyOperator().addListener(new TapFlyMissionOperatorListener() {
             @Override
             public void onUpdate(@Nullable TapFlyMissionEvent aggregation) {
-                TapFlyExecutionState executionState = aggregation.getProgressState();
+                TapFlyExecutionState executionState = aggregation.getExecutionState();
                 if (executionState != null){
                     showPointByTapFlyPoint(executionState.getImageLocation(), mRstPointIv);
                 }
@@ -73,7 +73,7 @@ public class PointingTestActivity extends DemoBaseActivity implements SurfaceTex
                 Utils.addLineToSB(sb, "PreviousState: ", previousState);
                 Utils.addLineToSB(sb, "Error:", errorInformation);
 
-                TapFlyExecutionState progressState = aggregation.getProgressState();
+                TapFlyExecutionState progressState = aggregation.getExecutionState();
 
                 if (progressState != null) {
                     Utils.addLineToSB(sb, "Heading: ", progressState.getRelativeHeading());
