@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/P4MissionsDemo.iml" filepath="$PROJECT_DIR$/P4MissionsDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/P4MissionsDemo/P4MissionsDemo-P4MissionsDemo.iml" filepath="$PROJECT_DIR$/P4MissionsDemo/P4MissionsDemo-P4MissionsDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dJISDKLIB/dJISDKLIB.iml" filepath="$PROJECT_DIR$/dJISDKLIB/dJISDKLIB.iml" />
     </modules>
   </component>
 </project>

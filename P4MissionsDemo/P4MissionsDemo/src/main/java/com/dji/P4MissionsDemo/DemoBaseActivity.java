@@ -24,7 +24,7 @@ import dji.sdk.products.Aircraft;
 public class DemoBaseActivity extends FragmentActivity implements SurfaceTextureListener {
 
     private static final String TAG = MainActivity.class.getName();
-    protected VideoFeeder.VideoDataCallback mReceivedVideoDataCallBack = null;
+    protected VideoFeeder.VideoDataListener mReceivedVideoDataListener = null;
     protected DJICodecManager mCodecManager = null;
     private BaseProduct mProduct;
 
@@ -51,7 +51,7 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
         }
 
         // The callback for receiving the raw H264 video data for camera live view
-        mReceivedVideoDataCallBack = new VideoFeeder.VideoDataCallback() {
+        mReceivedVideoDataListener = new VideoFeeder.VideoDataListener() {
 
             @Override
             public void onReceive(byte[] videoBuffer, int size) {
@@ -139,7 +139,7 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
             }
 
             if (!mProduct.getModel().equals(Model.UNKNOWN_AIRCRAFT)) {
-                VideoFeeder.getInstance().getPrimaryVideoFeed().setCallback(mReceivedVideoDataCallBack);
+                VideoFeeder.getInstance().getPrimaryVideoFeed().addVideoDataListener(mReceivedVideoDataListener);
             }
         }
     }
@@ -148,7 +148,7 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
         Camera camera = DJIDemoApplication.getCameraInstance();
         if (camera != null){
             // Reset the callback
-            VideoFeeder.getInstance().getPrimaryVideoFeed().setCallback(null);
+            VideoFeeder.getInstance().getPrimaryVideoFeed().addVideoDataListener(null);
         }
     }
     
