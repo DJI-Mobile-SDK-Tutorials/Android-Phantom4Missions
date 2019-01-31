@@ -34,7 +34,7 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
     protected TextView mConnectStatusTextView;
 
     protected TextureView mVideoSurface = null;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +112,7 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
     @Override
     protected void onDestroy() {
         Log.e(TAG, "onDestroy");
+        unregisterReceiver(mReceiver);
         uninitPreviewer();
         super.onDestroy();
     }
@@ -148,7 +149,7 @@ public class DemoBaseActivity extends FragmentActivity implements SurfaceTexture
         Camera camera = DJIDemoApplication.getCameraInstance();
         if (camera != null){
             // Reset the callback
-            VideoFeeder.getInstance().getPrimaryVideoFeed().addVideoDataListener(null);
+            VideoFeeder.getInstance().getPrimaryVideoFeed().removeVideoDataListener(mReceivedVideoDataListener);
         }
     }
     

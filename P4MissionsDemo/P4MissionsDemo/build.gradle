@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.dji.P4MissionsDemo"
@@ -43,6 +43,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:multidex:1.0.1'
 
-    compile ('com.dji:dji-sdk:4.8.1')
-    provided ('com.dji:dji-sdk-provided:4.8.1')
+    compile ('com.dji:dji-sdk:4.9')
+    provided ('com.dji:dji-sdk-provided:4.9')
 }
