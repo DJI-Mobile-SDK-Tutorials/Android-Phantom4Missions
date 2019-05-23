@@ -30,31 +30,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="gradle-wrapper.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_tracking_test.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/res/layout/activity_tracking_test.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="4510">
-              <caret line="205" column="58" lean-forward="false" selection-start-line="205" selection-start-column="58" selection-end-line="205" selection-end-column="58" />
-              <folding>
-                <marker date="1548927840000" expanded="true" signature="9468:9584" ph="..." />
-              </folding>
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PointingTestActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/PointingTestActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -65,26 +40,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TrackingTestActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="851">
+              <caret line="190" column="25" lean-forward="false" selection-start-line="190" selection-start-column="25" selection-end-line="190" selection-end-column="25" />
+              <folding>
+                <element signature="e#5088#7913#0" expanded="true" />
+                <element signature="e#7912#7913#0" expanded="true" />
+                <element signature="e#8280#8464#0" expanded="true" />
+                <element signature="e#8463#8464#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrackingTestActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/TrackingTestActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="507" column="59" lean-forward="true" selection-start-line="507" selection-start-column="59" selection-end-line="507" selection-end-column="59" />
+            <state relative-caret-position="44">
+              <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
               <folding>
-                <element signature="e#3715#3903#0" expanded="true" />
-                <element signature="e#3902#3903#0" expanded="true" />
-                <element signature="e#7330#7514#0" expanded="true" />
-                <element signature="e#7513#7514#0" expanded="true" />
-                <element signature="e#11306#11820#0" expanded="true" />
-                <element signature="e#11819#11820#0" expanded="true" />
-                <element signature="e#13164#13443#0" expanded="true" />
-                <element signature="e#13442#13443#0" expanded="true" />
-                <element signature="e#14113#14460#0" expanded="true" />
-                <element signature="e#14459#14460#0" expanded="true" />
-                <element signature="e#14599#14885#0" expanded="true" />
-                <element signature="e#14884#14885#0" expanded="true" />
-                <element signature="e#14923#15270#0" expanded="true" />
-                <element signature="e#15269#15270#0" expanded="true" />
+                <element signature="imports" expanded="true" />
                 <element signature="e#15454#15716#0" expanded="true" />
                 <element signature="e#15715#15716#0" expanded="true" />
                 <element signature="e#15750#16308#0" expanded="true" />
@@ -95,88 +72,75 @@
                 <element signature="e#17090#17091#0" expanded="true" />
                 <element signature="e#18281#18984#0" expanded="true" />
                 <element signature="e#18983#18984#0" expanded="true" />
-                <element signature="e#19128#19838#0" expanded="true" />
-                <element signature="e#19331#19580#0" expanded="true" />
-                <element signature="e#19579#19580#0" expanded="true" />
-                <element signature="e#19837#19838#0" expanded="true" />
-                <element signature="e#24905#25403#0" expanded="true" />
-                <element signature="e#25402#25403#0" expanded="true" />
-                <element signature="e#25787#26289#0" expanded="true" />
-                <element signature="e#26288#26289#0" expanded="true" />
-                <element signature="e#26361#26878#0" expanded="true" />
-                <element signature="e#26877#26878#0" expanded="true" />
-                <element signature="e#28238#29368#0" expanded="true" />
-                <element signature="e#29367#29368#0" expanded="true" />
-                <element signature="e#30196#30594#0" expanded="true" />
-                <element signature="e#30593#30594#0" expanded="true" />
-                <element signature="e#32417#33063#0" expanded="true" />
-                <element signature="e#33062#33063#0" expanded="true" />
-                <element signature="e#33449#34091#0" expanded="true" />
-                <element signature="e#34090#34091#0" expanded="true" />
-                <element signature="e#34365#35279#0" expanded="true" />
-                <element signature="e#34552#35067#0" expanded="true" />
-                <element signature="e#35066#35067#0" expanded="true" />
-                <element signature="e#35278#35279#0" expanded="true" />
-                <element signature="e#35690#36139#0" expanded="true" />
-                <element signature="e#36138#36139#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/res/values/strings.xml">
+      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="44">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/res/values/styles.xml">
+      <file leaf-file-name="MApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="88">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dimens.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/res/values/dimens.xml">
+      <file leaf-file-name="DJIDemoApplication.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/DJIDemoApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="259">
+              <caret line="140" column="53" lean-forward="false" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="53" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_pointing_test.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/res/layout/activity_pointing_test.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="81" column="59" lean-forward="true" selection-start-line="81" selection-start-column="59" selection-end-line="81" selection-end-column="59" />
-              <folding />
+            <state relative-caret-position="-232">
+              <caret line="49" column="27" lean-forward="true" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
+              <folding>
+                <marker date="1558619440000" expanded="false" signature="2803:2840" ph="&quot;P4MissionsDemo&quot;" />
+                <marker date="1558619440000" expanded="false" signature="3608:3646" ph="&quot;ActiveTrack Sample&quot;" />
+                <marker date="1558619440000" expanded="false" signature="3937:3975" ph="&quot;TapFly Sample&quot;" />
+              </folding>
             </state>
           </provider>
           <provider editor-type-id="android-manifest">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/P4MissionsDemo/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -205,6 +169,7 @@
       <find>dip2px</find>
       <find>MultiTrackingView</find>
       <find>tracking_stop_btn</find>
+      <find>setGestureModeEnabled</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -2438,6 +2403,9 @@
         <option value="$PROJECT_DIR$/P4MissionsDemo/src/main/res/layout/activity_pointing_test.xml" />
         <option value="$PROJECT_DIR$/P4MissionsDemo/src/main/res/layout/activity_tracking_test.xml" />
         <option value="$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/TrackingTestActivity.java" />
+        <option value="$PROJECT_DIR$/P4MissionsDemo/build.gradle" />
+        <option value="$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/DJIDemoApplication.java" />
+        <option value="$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MainActivity.java" />
         <option value="$PROJECT_DIR$/P4MissionsDemo/src/main/AndroidManifest.xml" />
       </list>
     </option>
@@ -2466,7 +2434,6 @@
       <pane id="ProjectPane" />
       <pane id="Scope" />
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2477,64 +2444,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Gradle Scripts" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="P4MissionsDemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="P4MissionsDemo-P4MissionsDemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="styles.xml" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="P4MissionsDemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="P4MissionsDemo-P4MissionsDemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="P4MissionsDemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="P4MissionsDemo-P4MissionsDemo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2585,6 +2494,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2674,8 +2584,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1548932505457" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558619445797" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2722,8 +2631,7 @@
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
       </Profilers>
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1548932505457" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558619445797" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2755,27 +2663,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -2905,8 +2792,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1548932505458" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1558619445797" />
       </method>
     </configuration>
     <list size="1">
@@ -2950,7 +2836,7 @@
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2228261" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1576087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2964,8 +2850,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24986118" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21987784" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2979,6 +2864,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -2989,6 +2875,76 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/res/layout/activity_pointing_test.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1782">
+          <caret line="81" column="59" lean-forward="true" selection-start-line="81" selection-start-column="59" selection-end-line="81" selection-end-column="59" />
+          <folding>
+            <marker date="1558619440000" expanded="false" signature="2803:2840" ph="&quot;P4MissionsDemo&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3608:3646" ph="&quot;ActiveTrack Sample&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3937:3975" ph="&quot;TapFly Sample&quot;" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MultiTrackingView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/TrackingTestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8800">
+          <caret line="455" column="0" lean-forward="true" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#15454#15716#0" expanded="true" />
+            <element signature="e#15715#15716#0" expanded="true" />
+            <element signature="e#15750#16308#0" expanded="true" />
+            <element signature="e#16307#16308#0" expanded="true" />
+            <element signature="e#16472#16739#0" expanded="true" />
+            <element signature="e#16738#16739#0" expanded="true" />
+            <element signature="e#16772#17091#0" expanded="true" />
+            <element signature="e#17090#17091#0" expanded="true" />
+            <element signature="e#18281#18984#0" expanded="true" />
+            <element signature="e#18983#18984#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -3009,7 +2965,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3065,7 +3020,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="858">
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1558619440000" expanded="false" signature="2803:2840" ph="&quot;P4MissionsDemo&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3608:3646" ph="&quot;ActiveTrack Sample&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3937:3975" ph="&quot;TapFly Sample&quot;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3074,20 +3033,7 @@
         <state relative-caret-position="5566">
           <caret line="253" column="25" lean-forward="false" selection-start-line="253" selection-start-column="25" selection-end-line="253" selection-end-column="25" />
           <folding>
-            <element signature="e#3715#3903#0" expanded="true" />
-            <element signature="e#3902#3903#0" expanded="true" />
-            <element signature="e#7330#7514#0" expanded="true" />
-            <element signature="e#7513#7514#0" expanded="true" />
-            <element signature="e#11306#11820#0" expanded="true" />
-            <element signature="e#11819#11820#0" expanded="true" />
-            <element signature="e#13164#13443#0" expanded="true" />
-            <element signature="e#13442#13443#0" expanded="true" />
-            <element signature="e#14113#14460#0" expanded="true" />
-            <element signature="e#14459#14460#0" expanded="true" />
-            <element signature="e#14599#14885#0" expanded="true" />
-            <element signature="e#14884#14885#0" expanded="true" />
-            <element signature="e#14923#15270#0" expanded="true" />
-            <element signature="e#15269#15270#0" expanded="true" />
+            <element signature="imports" expanded="true" />
             <element signature="e#15454#15716#0" expanded="true" />
             <element signature="e#15715#15716#0" expanded="true" />
             <element signature="e#15750#16308#0" expanded="true" />
@@ -3098,30 +3044,6 @@
             <element signature="e#17090#17091#0" expanded="true" />
             <element signature="e#18281#18984#0" expanded="true" />
             <element signature="e#18983#18984#0" expanded="true" />
-            <element signature="e#19128#19838#0" expanded="true" />
-            <element signature="e#19331#19580#0" expanded="true" />
-            <element signature="e#19579#19580#0" expanded="true" />
-            <element signature="e#19837#19838#0" expanded="true" />
-            <element signature="e#24905#25403#0" expanded="true" />
-            <element signature="e#25402#25403#0" expanded="true" />
-            <element signature="e#25787#26289#0" expanded="true" />
-            <element signature="e#26288#26289#0" expanded="true" />
-            <element signature="e#26361#26878#0" expanded="true" />
-            <element signature="e#26877#26878#0" expanded="true" />
-            <element signature="e#28238#29368#0" expanded="true" />
-            <element signature="e#29367#29368#0" expanded="true" />
-            <element signature="e#30196#30594#0" expanded="true" />
-            <element signature="e#30593#30594#0" expanded="true" />
-            <element signature="e#32417#33063#0" expanded="true" />
-            <element signature="e#33062#33063#0" expanded="true" />
-            <element signature="e#33449#34091#0" expanded="true" />
-            <element signature="e#34090#34091#0" expanded="true" />
-            <element signature="e#34365#35279#0" expanded="true" />
-            <element signature="e#34552#35067#0" expanded="true" />
-            <element signature="e#35066#35067#0" expanded="true" />
-            <element signature="e#35278#35279#0" expanded="true" />
-            <element signature="e#35690#36139#0" expanded="true" />
-            <element signature="e#36138#36139#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3146,7 +3068,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3202,7 +3123,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="858">
           <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1558619440000" expanded="false" signature="2803:2840" ph="&quot;P4MissionsDemo&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3608:3646" ph="&quot;ActiveTrack Sample&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3937:3975" ph="&quot;TapFly Sample&quot;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3211,20 +3136,7 @@
         <state relative-caret-position="4444">
           <caret line="262" column="25" lean-forward="false" selection-start-line="262" selection-start-column="25" selection-end-line="262" selection-end-column="25" />
           <folding>
-            <element signature="e#3715#3903#0" expanded="true" />
-            <element signature="e#3902#3903#0" expanded="true" />
-            <element signature="e#7330#7514#0" expanded="true" />
-            <element signature="e#7513#7514#0" expanded="true" />
-            <element signature="e#11306#11820#0" expanded="true" />
-            <element signature="e#11819#11820#0" expanded="true" />
-            <element signature="e#13164#13443#0" expanded="true" />
-            <element signature="e#13442#13443#0" expanded="true" />
-            <element signature="e#14113#14460#0" expanded="true" />
-            <element signature="e#14459#14460#0" expanded="true" />
-            <element signature="e#14599#14885#0" expanded="true" />
-            <element signature="e#14884#14885#0" expanded="true" />
-            <element signature="e#14923#15270#0" expanded="true" />
-            <element signature="e#15269#15270#0" expanded="true" />
+            <element signature="imports" expanded="true" />
             <element signature="e#15454#15716#0" expanded="true" />
             <element signature="e#15715#15716#0" expanded="true" />
             <element signature="e#15750#16308#0" expanded="true" />
@@ -3235,30 +3147,6 @@
             <element signature="e#17090#17091#0" expanded="true" />
             <element signature="e#18281#18984#0" expanded="true" />
             <element signature="e#18983#18984#0" expanded="true" />
-            <element signature="e#19128#19838#0" expanded="true" />
-            <element signature="e#19331#19580#0" expanded="true" />
-            <element signature="e#19579#19580#0" expanded="true" />
-            <element signature="e#19837#19838#0" expanded="true" />
-            <element signature="e#24905#25403#0" expanded="true" />
-            <element signature="e#25402#25403#0" expanded="true" />
-            <element signature="e#25787#26289#0" expanded="true" />
-            <element signature="e#26288#26289#0" expanded="true" />
-            <element signature="e#26361#26878#0" expanded="true" />
-            <element signature="e#26877#26878#0" expanded="true" />
-            <element signature="e#28238#29368#0" expanded="true" />
-            <element signature="e#29367#29368#0" expanded="true" />
-            <element signature="e#30196#30594#0" expanded="true" />
-            <element signature="e#30593#30594#0" expanded="true" />
-            <element signature="e#32417#33063#0" expanded="true" />
-            <element signature="e#33062#33063#0" expanded="true" />
-            <element signature="e#33449#34091#0" expanded="true" />
-            <element signature="e#34090#34091#0" expanded="true" />
-            <element signature="e#34365#35279#0" expanded="true" />
-            <element signature="e#34552#35067#0" expanded="true" />
-            <element signature="e#35066#35067#0" expanded="true" />
-            <element signature="e#35278#35279#0" expanded="true" />
-            <element signature="e#35690#36139#0" expanded="true" />
-            <element signature="e#36138#36139#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3298,7 +3186,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1558619440000" expanded="false" signature="2803:2840" ph="&quot;P4MissionsDemo&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3608:3646" ph="&quot;ActiveTrack Sample&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3937:3975" ph="&quot;TapFly Sample&quot;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3315,50 +3207,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/local.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3386,34 +3238,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/PointingTestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/DensityUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="38" lean-forward="false" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MultiTrackingView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/DensityUtil.java" />
     <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -3434,36 +3263,81 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="81" column="59" lean-forward="true" selection-start-line="81" selection-start-column="59" selection-end-line="81" selection-end-column="59" />
+        <state relative-caret-position="110">
+          <caret line="5" column="69" lean-forward="false" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/DemoBaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3833">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/DJIDemoApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="140" column="53" lean-forward="false" selection-start-line="140" selection-start-column="38" selection-end-line="140" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="190" column="25" lean-forward="false" selection-start-line="190" selection-start-column="25" selection-end-line="190" selection-end-column="25" />
+          <folding>
+            <element signature="e#5088#7913#0" expanded="true" />
+            <element signature="e#7912#7913#0" expanded="true" />
+            <element signature="e#8280#8464#0" expanded="true" />
+            <element signature="e#8463#8464#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/MultiTrackingView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/PointingTestActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="38" column="27" lean-forward="false" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/java/com/dji/P4MissionsDemo/TrackingTestActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="507" column="59" lean-forward="true" selection-start-line="507" selection-start-column="59" selection-end-line="507" selection-end-column="59" />
+        <state relative-caret-position="44">
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
-            <element signature="e#3715#3903#0" expanded="true" />
-            <element signature="e#3902#3903#0" expanded="true" />
-            <element signature="e#7330#7514#0" expanded="true" />
-            <element signature="e#7513#7514#0" expanded="true" />
-            <element signature="e#11306#11820#0" expanded="true" />
-            <element signature="e#11819#11820#0" expanded="true" />
-            <element signature="e#13164#13443#0" expanded="true" />
-            <element signature="e#13442#13443#0" expanded="true" />
-            <element signature="e#14113#14460#0" expanded="true" />
-            <element signature="e#14459#14460#0" expanded="true" />
-            <element signature="e#14599#14885#0" expanded="true" />
-            <element signature="e#14884#14885#0" expanded="true" />
-            <element signature="e#14923#15270#0" expanded="true" />
-            <element signature="e#15269#15270#0" expanded="true" />
+            <element signature="imports" expanded="true" />
             <element signature="e#15454#15716#0" expanded="true" />
             <element signature="e#15715#15716#0" expanded="true" />
             <element signature="e#15750#16308#0" expanded="true" />
@@ -3474,31 +3348,38 @@
             <element signature="e#17090#17091#0" expanded="true" />
             <element signature="e#18281#18984#0" expanded="true" />
             <element signature="e#18983#18984#0" expanded="true" />
-            <element signature="e#19128#19838#0" expanded="true" />
-            <element signature="e#19331#19580#0" expanded="true" />
-            <element signature="e#19579#19580#0" expanded="true" />
-            <element signature="e#19837#19838#0" expanded="true" />
-            <element signature="e#24905#25403#0" expanded="true" />
-            <element signature="e#25402#25403#0" expanded="true" />
-            <element signature="e#25787#26289#0" expanded="true" />
-            <element signature="e#26288#26289#0" expanded="true" />
-            <element signature="e#26361#26878#0" expanded="true" />
-            <element signature="e#26877#26878#0" expanded="true" />
-            <element signature="e#28238#29368#0" expanded="true" />
-            <element signature="e#29367#29368#0" expanded="true" />
-            <element signature="e#30196#30594#0" expanded="true" />
-            <element signature="e#30593#30594#0" expanded="true" />
-            <element signature="e#32417#33063#0" expanded="true" />
-            <element signature="e#33062#33063#0" expanded="true" />
-            <element signature="e#33449#34091#0" expanded="true" />
-            <element signature="e#34090#34091#0" expanded="true" />
-            <element signature="e#34365#35279#0" expanded="true" />
-            <element signature="e#34552#35067#0" expanded="true" />
-            <element signature="e#35066#35067#0" expanded="true" />
-            <element signature="e#35278#35279#0" expanded="true" />
-            <element signature="e#35690#36139#0" expanded="true" />
-            <element signature="e#36138#36139#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-232">
+          <caret line="49" column="27" lean-forward="true" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
+          <folding>
+            <marker date="1558619440000" expanded="false" signature="2803:2840" ph="&quot;P4MissionsDemo&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3608:3646" ph="&quot;ActiveTrack Sample&quot;" />
+            <marker date="1558619440000" expanded="false" signature="3937:3975" ph="&quot;TapFly Sample&quot;" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="16" lean-forward="false" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/P4MissionsDemo/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -14,6 +14,7 @@ import dji.sdk.base.BaseComponent;
 import dji.sdk.base.BaseProduct;
 import dji.sdk.camera.Camera;
 import dji.sdk.products.Aircraft;
+import dji.sdk.sdkmanager.DJISDKInitEvent;
 import dji.sdk.sdkmanager.DJISDKManager;
 import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
@@ -134,6 +135,10 @@ public class DJIDemoApplication extends Application{
                                 componentKey,
                                 oldComponent,
                                 newComponent));
+
+            }
+            @Override
+            public void onInitProcess(DJISDKInitEvent djisdkInitEvent, int i) {
 
             }
         };
