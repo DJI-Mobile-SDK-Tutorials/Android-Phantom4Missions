@@ -166,6 +166,12 @@ public class MainActivity extends DemoBaseActivity {
                             showToast("Product Connected");
 
                         }
+
+                        @Override
+                        public void onProductChanged(BaseProduct baseProduct) {
+
+                        }
+
                         @Override
                         public void onComponentChange(BaseProduct.ComponentKey componentKey, BaseComponent oldComponent,
                                                       BaseComponent newComponent) {
