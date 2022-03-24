@@ -8,7 +8,7 @@ From this demo, you will learn how to use the TapFly and ActiveTrack Missions of
 
  - Android Studio 2.0+
  - Android System 4.1+
- - DJI Android SDK 4.16
+ - DJI Android SDK 4.16.1
 
 ## Tutorial
 
